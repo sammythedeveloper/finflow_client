@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
 import AppLayout from '../components/AppLayout.vue';
-import CategoryBreakdown from '../components/CategoryBreakdown.vue';
 import FinancialSummary from '../components/FinancialSummary.vue';
 import MetricCard from '../components/MetricCard.vue';
 import SpendingChart from '../components/SpendingChart.vue';
