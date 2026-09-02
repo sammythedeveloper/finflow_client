@@ -322,7 +322,7 @@ const confirmLogout = () => {
           @click="emit('addTransaction')"
         >
           <div
-            class="w-10 h-10 -mt-5 rounded-2xl flex items-center justify-center text-white"
+            class="w-10 h-10  rounded-2xl flex items-center justify-center text-white"
             style="
               background: linear-gradient(
                 135deg,
