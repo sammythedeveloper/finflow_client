@@ -20,7 +20,7 @@ const routes = [
     meta: { guest: true },
   },
   {
-    path: '/',
+    path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/DashboardView.vue'),
     meta: { requiresAuth: true },
