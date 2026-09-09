@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import AnimatedBackground from '../components/AnimatedBackground.vue';
-import ThemeToggle from '../components/ThemeToggle.vue';
-import { useAuthStore } from '../stores/auth';
+import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import AnimatedBackground from "../components/AnimatedBackground.vue";
+import ThemeToggle from "../components/ThemeToggle.vue";
+import { useAuthStore } from "../stores/auth";
 
 const route = useRoute();
 const router = useRouter();
 const auth = useAuthStore();
 
-const isRegister = computed(() => route.name === 'Register');
+const isRegister = computed(() => route.name === "Register");
 
-const username = ref('');
-const email = ref('');
-const password = ref('');
+const username = ref("");
+const email = ref("");
+const password = ref("");
 
 watch(isRegister, () => {
   auth.clearError();
@@ -21,7 +21,7 @@ watch(isRegister, () => {
 
 const switchMode = (register: boolean) => {
   auth.clearError();
-  router.push({ name: register ? 'Register' : 'Login' });
+  router.push({ name: register ? "Register" : "Login" });
 };
 
 const handleSubmit = async () => {
@@ -29,12 +29,14 @@ const handleSubmit = async () => {
     ? await auth.register(username.value, email.value, password.value)
     : await auth.login(email.value, password.value);
 
-  if (success) router.push({ name: 'Dashboard' });
+  if (success) router.push({ name: "Dashboard" });
 };
 </script>
 
 <template>
-  <div class="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
+  <div
+    class="relative min-h-screen flex items-center justify-center p-4 overflow-hidden"
+  >
     <AnimatedBackground />
 
     <div class="absolute top-5 right-5 z-20">
@@ -45,16 +47,34 @@ const handleSubmit = async () => {
       <!-- Logo -->
       <div class="text-center mb-8">
         <div
-          class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center text-2xl font-bold text-white animate-pulse-glow"
-          style="background: linear-gradient(135deg, var(--accent), #3b82f6); box-shadow: 0 8px 32px var(--accent-glow);"
+          class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center text-2xl font-bold text-white animate-pulse-glow cursor-pointer"
+          style="
+            background: linear-gradient(135deg, var(--accent), #3b82f6);
+            box-shadow: 0 8px 32px var(--accent-glow);
+          "
+          @click="router.push('/')"
         >
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+            />
           </svg>
         </div>
         <h1 class="text-3xl font-bold tracking-tight gradient-text">FinFlow</h1>
-        <p class="text-sm mt-2" style="color: var(--text-secondary);">
-          {{ isRegister ? 'Begin your financial journey' : 'Welcome back, let\'s grow your wealth' }}
+        <p class="text-sm mt-2" style="color: var(--text-secondary)">
+          {{
+            isRegister
+              ? "Begin your financial journey"
+              : "Welcome back, let's grow your wealth"
+          }}
         </p>
       </div>
 
@@ -63,7 +83,10 @@ const handleSubmit = async () => {
         <!-- Mode toggle -->
         <div
           class="relative flex p-1 rounded-2xl mb-8"
-          style="background: var(--bg-surface); border: 1px solid var(--border-subtle);"
+          style="
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+          "
         >
           <div
             class="absolute top-1 bottom-1 rounded-xl transition-all duration-400 ease-out"
@@ -97,7 +120,11 @@ const handleSubmit = async () => {
           <div
             v-if="auth.error"
             class="mb-5 px-4 py-3 rounded-xl text-sm"
-            style="background: var(--text-muted); color: var(--text-secondary); border: 1px solid var(--border-subtle);"
+            style="
+              background: var(--text-muted);
+              color: var(--text-secondary);
+              border: 1px solid var(--border-subtle);
+            "
           >
             {{ auth.error }}
           </div>
@@ -107,18 +134,52 @@ const handleSubmit = async () => {
         <form @submit.prevent="handleSubmit">
           <Transition name="fade-slide" mode="out-in">
             <div :key="isRegister ? 'register' : 'login'" class="space-y-4">
-              <div v-if="isRegister" class="animate-slide-up opacity-0 stagger-1" style="animation-fill-mode: forwards;">
-                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--text-muted);">Username</label>
-                <input v-model="username" type="text" required placeholder="Your name" class="input-field" />
+              <div
+                v-if="isRegister"
+                class="animate-slide-up opacity-0 stagger-1"
+                style="animation-fill-mode: forwards"
+              >
+                <label
+                  class="block text-xs font-semibold uppercase tracking-wider mb-2"
+                  style="color: var(--text-muted)"
+                  >Username</label
+                >
+                <input
+                  v-model="username"
+                  type="text"
+                  required
+                  placeholder="Your name"
+                  class="input-field"
+                />
               </div>
 
-              <div class="animate-slide-up opacity-0 stagger-2" style="animation-fill-mode: forwards;">
-                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--text-muted);">Email</label>
-                <input v-model="email" type="email" required placeholder="you@example.com" class="input-field" />
+              <div
+                class="animate-slide-up opacity-0 stagger-2"
+                style="animation-fill-mode: forwards"
+              >
+                <label
+                  class="block text-xs font-semibold uppercase tracking-wider mb-2"
+                  style="color: var(--text-muted)"
+                  >Email</label
+                >
+                <input
+                  v-model="email"
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  class="input-field"
+                />
               </div>
 
-              <div class="animate-slide-up opacity-0 stagger-3" style="animation-fill-mode: forwards;">
-                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--text-muted);">Password</label>
+              <div
+                class="animate-slide-up opacity-0 stagger-3"
+                style="animation-fill-mode: forwards"
+              >
+                <label
+                  class="block text-xs font-semibold uppercase tracking-wider mb-2"
+                  style="color: var(--text-muted)"
+                  >Password</label
+                >
                 <input
                   v-model="password"
                   type="password"
@@ -129,11 +190,23 @@ const handleSubmit = async () => {
                 />
               </div>
 
-              <div class="animate-slide-up opacity-0 stagger-4 pt-2" style="animation-fill-mode: forwards;">
-                <button type="submit" :disabled="auth.loading" class="btn-primary w-full py-3 rounded-xl text-sm">
-                  {{ auth.loading
-                    ? (isRegister ? 'Creating account...' : 'Signing in...')
-                    : (isRegister ? 'Create Account' : 'Sign In')
+              <div
+                class="animate-slide-up opacity-0 stagger-4 pt-2"
+                style="animation-fill-mode: forwards"
+              >
+                <button
+                  type="submit"
+                  :disabled="auth.loading"
+                  class="btn-primary w-full py-3 rounded-xl text-sm"
+                >
+                  {{
+                    auth.loading
+                      ? isRegister
+                        ? "Creating account..."
+                        : "Signing in..."
+                      : isRegister
+                      ? "Create Account"
+                      : "Sign In"
                   }}
                 </button>
               </div>
@@ -142,7 +215,7 @@ const handleSubmit = async () => {
         </form>
       </div>
 
-      <p class="text-center text-xs mt-6" style="color: var(--text-muted);">
+      <p class="text-center text-xs mt-6" style="color: var(--text-muted)">
         Secure · Encrypted · Your data stays yours
       </p>
     </div>

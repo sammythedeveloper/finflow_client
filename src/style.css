@@ -287,3 +287,45 @@ body {
   border-radius: 99px;
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-40px, 30px) rotate(180deg);
+  }
+}
+
+@keyframes mesh-drift {
+  0%, 100% {
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(5%, -5%) rotate(2deg);
+  }
+
+  50% {
+    transform: translate(-3%, 3%) rotate(-1deg);
+  }
+
+  75% {
+    transform: translate(2%, 5%) rotate(1deg);
+  }
+}
