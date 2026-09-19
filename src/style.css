@@ -5,7 +5,9 @@
   --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* ─── FinFlow Design System (Finaura-inspired) ─── */
+/* ─── FinFlow Design System ─── */
+/* Dark charcoal + glass + emerald fintech aesthetic */
+
 :root,
 [data-theme="dark"] {
   --bg-base: #0a0c10;
@@ -13,30 +15,47 @@
   --bg-surface: rgba(255, 255, 255, 0.04);
   --bg-surface-hover: rgba(255, 255, 255, 0.07);
   --bg-glass: rgba(17, 19, 24, 0.85);
+
   --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-glow: rgba(96, 165, 250, 0.3);
+  --border-glow: rgba(52, 211, 153, 0.3);
+
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --accent: #60a5fa;
-  --accent-bright: #93c5fd;
-  --accent-glow: rgba(96, 165, 250, 0.18);
+
+  /* ─── Primary FinFlow Emerald ─── */
+  --accent: #34d399;
+  --accent-bright: #6ee7b7;
+  --accent-glow: rgba(52, 211, 153, 0.18);
+
+  /* ─── Secondary / Neutral ─── */
   --gold: #cbd5e1;
   --gold-glow: rgba(203, 213, 225, 0.08);
-  --income: #7dd3fc;
-  --income-bg: rgba(125, 211, 252, 0.08);
+
+  /* ─── Financial States ─── */
+  --income: #34d399;
+  --income-bg: rgba(52, 211, 153, 0.08);
+
   --expense: #94a3b8;
   --expense-bg: rgba(148, 163, 184, 0.06);
-  --chart-blue: #60a5fa;
-  --chart-blue-bg: rgba(96, 165, 250, 0.1);
-  --chart-bar-inactive: rgba(96, 165, 250, 0.12);
+
+  /* ─── Charts ─── */
+  --chart-blue: #34d399;
+  --chart-blue-bg: rgba(52, 211, 153, 0.1);
+  --chart-bar-inactive: rgba(52, 211, 153, 0.12);
+
+  /* ─── Tags ─── */
   --tag-expense-text: #64748b;
-  --tag-income-text: #7dd3fc;
+  --tag-income-text: #6ee7b7;
+
+  /* ─── Layout ─── */
   --sidebar-bg: rgba(10, 12, 16, 0.92);
   --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.45);
-  --mesh-1: #0f172a;
+
+  /* ─── Background Mesh ─── */
+  --mesh-1: #064e3b;
   --mesh-2: #111827;
-  --mesh-3: #0c1220;
+  --mesh-3: #0c1713;
 }
 
 [data-theme="light"] {
@@ -45,31 +64,50 @@
   --bg-surface: rgba(0, 0, 0, 0.03);
   --bg-surface-hover: rgba(0, 0, 0, 0.05);
   --bg-glass: rgba(255, 255, 255, 0.9);
+
   --border-subtle: rgba(0, 0, 0, 0.07);
-  --border-glow: rgba(37, 99, 235, 0.2);
+  --border-glow: rgba(5, 150, 105, 0.2);
+
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #94a3b8;
-  --accent: #2563eb;
-  --accent-bright: #3b82f6;
-  --accent-glow: rgba(37, 99, 235, 0.12);
+
+  /* ─── Primary FinFlow Emerald ─── */
+  --accent: #059669;
+  --accent-bright: #10b981;
+  --accent-glow: rgba(5, 150, 105, 0.12);
+
+  /* ─── Secondary / Neutral ─── */
   --gold: #64748b;
   --gold-glow: rgba(100, 116, 139, 0.08);
-  --income: #0284c7;
-  --income-bg: rgba(2, 132, 199, 0.08);
+
+  /* ─── Financial States ─── */
+  --income: #059669;
+  --income-bg: rgba(5, 150, 105, 0.08);
+
   --expense: #64748b;
   --expense-bg: rgba(100, 116, 139, 0.06);
-  --chart-blue: #2563eb;
-  --chart-blue-bg: rgba(37, 99, 235, 0.08);
-  --chart-bar-inactive: rgba(37, 99, 235, 0.1);
+
+  /* ─── Charts ─── */
+  --chart-blue: #059669;
+  --chart-blue-bg: rgba(5, 150, 105, 0.08);
+  --chart-bar-inactive: rgba(5, 150, 105, 0.1);
+
+  /* ─── Tags ─── */
   --tag-expense-text: #64748b;
-  --tag-income-text: #0284c7;
+  --tag-income-text: #059669;
+
+  /* ─── Layout ─── */
   --sidebar-bg: rgba(255, 255, 255, 0.95);
   --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-  --mesh-1: #eff6ff;
+
+  /* ─── Background Mesh ─── */
+  --mesh-1: #ecfdf5;
   --mesh-2: #f1f5f9;
   --mesh-3: #e2e8f0;
 }
+
+/* ─── Base ─── */
 
 * {
   box-sizing: border-box;
@@ -87,7 +125,8 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* ─── Utility classes ─── */
+/* ─── Glass Cards ─── */
+
 .glass-card {
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
@@ -97,41 +136,67 @@ body {
 }
 
 .glass-card-hover {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
+
 .glass-card-hover:hover {
   transform: translateY(-2px);
   border-color: var(--border-glow);
-  box-shadow: var(--card-shadow), 0 0 24px var(--accent-glow);
+  box-shadow:
+    var(--card-shadow),
+    0 0 24px var(--accent-glow);
 }
 
+/* ─── Gradient Text ─── */
+
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-bright), #e2e8f0);
+  background: linear-gradient(
+    135deg,
+    var(--accent-bright),
+    #e2e8f0
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* ─── Primary Button ─── */
+
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #3b82f6);
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent-bright)
+  );
   color: white;
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
   box-shadow: 0 4px 20px var(--accent-glow);
 }
+
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: 0 8px 28px var(--accent-glow);
 }
+
 .btn-primary:active:not(:disabled) {
   transform: translateY(0);
 }
+
 .btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* ─── Ghost Button ─── */
 
 .btn-ghost {
   color: var(--text-secondary);
@@ -139,13 +204,19 @@ body {
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   font-weight: 500;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
+
 .btn-ghost:hover {
   color: var(--text-primary);
   background: var(--bg-surface-hover);
   border-color: var(--border-glow);
 }
+
+/* ─── Transaction Tags ─── */
 
 .tag-type {
   font-size: 0.6875rem;
@@ -153,12 +224,16 @@ body {
   letter-spacing: 0.02em;
   text-transform: capitalize;
 }
+
 .tag-type--expense {
   color: var(--tag-expense-text);
 }
+
 .tag-type--income {
   color: var(--tag-income-text);
 }
+
+/* ─── Inputs ─── */
 
 .input-field {
   width: 100%;
@@ -168,16 +243,22 @@ body {
   border-radius: 0.875rem;
   color: var(--text-primary);
   font-size: 0.875rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
   outline: none;
 }
+
 .input-field-lg {
   padding: 0.875rem 1rem 0.875rem 3rem;
   font-size: 0.9375rem;
 }
+
 .input-field::placeholder {
   color: var(--text-muted);
 }
+
 .input-field:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-glow);
@@ -185,111 +266,10 @@ body {
 }
 
 /* ─── Animations ─── */
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
-}
-
-@keyframes float-slow {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(-40px, 30px) rotate(180deg); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.08); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes bar-grow {
-  from { width: 0; opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes mesh-drift {
-  0%, 100% { transform: translate(0%, 0%) rotate(0deg); }
-  25% { transform: translate(5%, -5%) rotate(2deg); }
-  50% { transform: translate(-3%, 3%) rotate(-1deg); }
-  75% { transform: translate(2%, 5%) rotate(1deg); }
-}
-
-.animate-float { animation: float 8s ease-in-out infinite; }
-.animate-float-slow { animation: float-slow 14s ease-in-out infinite; }
-.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
-.animate-slide-up { animation: slide-up 0.5s ease forwards; }
-.animate-fade-in { animation: fade-in 0.4s ease forwards; }
-
-.stagger-1 { animation-delay: 0.05s; }
-.stagger-2 { animation-delay: 0.1s; }
-.stagger-3 { animation-delay: 0.15s; }
-.stagger-4 { animation-delay: 0.2s; }
-.stagger-5 { animation-delay: 0.25s; }
-
-/* ─── Vue transitions ─── */
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-.fade-slide-enter-from {
-  opacity: 0;
-  transform: translateX(20px);
-}
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateX(-20px);
-}
-
-.fade-up-enter-active,
-.fade-up-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.fade-up-enter-from,
-.fade-up-leave-to {
-  opacity: 0;
-  transform: translateY(12px);
-}
-
-.bar-list-move,
-.bar-list-enter-active,
-.bar-list-leave-active {
-  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.bar-list-enter-from,
-.bar-list-leave-to {
-  opacity: 0;
-  transform: translateX(-12px);
-}
-.bar-list-leave-active {
-  position: absolute;
-  width: 100%;
-}
-
-/* ─── Scrollbar ─── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
-  border-radius: 99px;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
   }
 
@@ -303,7 +283,8 @@ body {
 }
 
 @keyframes float-slow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) rotate(0deg);
   }
 
@@ -312,8 +293,65 @@ body {
   }
 }
 
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes mesh-drift {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0%, 0%) rotate(0deg);
   }
 
@@ -328,4 +366,113 @@ body {
   75% {
     transform: translate(2%, 5%) rotate(1deg);
   }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 14s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease forwards;
+}
+
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+
+.stagger-5 {
+  animation-delay: 0.25s;
+}
+
+/* ─── Vue Transitions ─── */
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.bar-list-move,
+.bar-list-enter-active,
+.bar-list-leave-active {
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-list-enter-from,
+.bar-list-leave-to {
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
+.bar-list-leave-active {
+  position: absolute;
+  width: 100%;
+}
+
+/* ─── Scrollbar ─── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }

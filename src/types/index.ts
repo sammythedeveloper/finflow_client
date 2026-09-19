@@ -1,8 +1,8 @@
 export interface Category {
   id: number;
   name: string;
-  type: 'Income' | 'Expense';
-  userId: number;
+  type: "Income" | "Expense";
+  userId: string; 
 }
 
 export interface Transaction {
@@ -10,7 +10,7 @@ export interface Transaction {
   amount: number;
   description: string;
   date: string;
-  userId: number;
+  userId: string; 
   categoryId: number;
   categoryName: string;
 }
@@ -24,7 +24,7 @@ export interface TransactionCreate {
 
 export interface CategoryCreate {
   name: string;
-  type: 'Income' | 'Expense';
+  type: "Income" | "Expense";
 }
 
 export interface CategorySummary {

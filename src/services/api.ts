@@ -1,37 +1,46 @@
-import axios from 'axios';
+import axios from "axios";
+import { useAuthStore } from "../stores/auth";
 
-console.log('API URL:', import.meta.env.VITE_API_URL);
 const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_URL}/api`,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
+// Attach Supabase access token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const auth = useAuthStore();
+    const token = auth.token;
+
+    console.log("API REQUEST:", config.url);
+    console.log("TOKEN EXISTS:", !!token);
+    console.log("TOKEN LENGTH:", token?.length);
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 );
 
+// TEMPORARY: don't logout on 401
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('userEmail');
-      localStorage.removeItem('username');
-      if (!window.location.pathname.includes('/login')) {
-        window.location.href = '/login';
-      }
+      console.error("API 401:", {
+        url: error.config?.url,
+        status: error.response?.status,
+        data: error.response?.data,
+      });
     }
+
     return Promise.reject(error);
-  },
+  }
 );
 
 export default api;

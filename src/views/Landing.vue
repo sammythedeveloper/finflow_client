@@ -2,9 +2,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import AnimatedBackground from "../components/AnimatedBackground.vue";
-import ThemeToggle from '../components/ThemeToggle.vue';
+import ThemeToggle from "../components/ThemeToggle.vue";
 import { useAuthStore } from "../stores/auth";
-
 
 const router = useRouter();
 const auth = useAuthStore();
@@ -47,14 +46,29 @@ const goToDashboard = () => {
             @click="router.push({ name: 'Home' })"
           >
             <div
-          class="flex h-10 w-10 items-center justify-center rounded-xl text-lg text-white shadow-lg font-bold  animate-pulse-glow"
-          style="background: linear-gradient(135deg, var(--accent), #3b82f6); box-shadow: 0 8px 32px var(--accent-glow);"
-        >
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold tracking-tight gradient-text">FinFlow</h3>
+              class="flex h-10 w-10 items-center justify-center rounded-xl text-lg text-white shadow-lg font-bold animate-pulse-glow"
+              style="
+                background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+                box-shadow: 0 4px 16px var(--accent-glow);
+              "
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold tracking-tight gradient-text">
+              FinFlow
+            </h3>
           </button>
 
           <!-- Desktop navigation -->
@@ -113,9 +127,9 @@ const goToDashboard = () => {
             <div
               v-if="!auth.isAuthenticated"
               type="button"
-              class=" rounded-xl px-4 py-2.5 text-sm"
+              class="rounded-xl px-4 py-2.5 text-sm"
             >
-            <ThemeToggle />
+              <ThemeToggle />
             </div>
             <button
               v-if="!auth.isAuthenticated"
@@ -399,310 +413,530 @@ const goToDashboard = () => {
 
                 <!-- Dashboard -->
                 <div class="p-4 sm:p-6 lg:p-8">
-                  <!-- Summary cards -->
-                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                    <!-- Balance -->
-                    <div
-                      class="rounded-2xl border p-4 sm:p-5"
-                      style="
-                        background: var(--bg-surface);
-                        border-color: var(--border-subtle);
-                      "
-                    >
-                      <p class="text-xs" style="color: var(--text-muted)">
-                        Current balance
-                      </p>
 
-                      <p
-                        class="mt-2 text-xl sm:text-2xl font-bold"
-                        style="color: var(--text-primary)"
-                      >
-                        $8,420.50
-                      </p>
+<!-- =========================
+     Overview header
+========================== -->
+<div class="flex items-end justify-between mb-6">
+  <div>
+    <p
+      class="text-xs font-medium uppercase tracking-wider"
+      style="color: var(--accent)"
+    >
+      Overview
+    </p>
 
-                      <div
-                        class="mt-3 flex items-center gap-1 text-xs"
-                        style="color: var(--income)"
-                      >
-                        <span>↗</span>
-                        <span>12.4% this month</span>
-                      </div>
-                    </div>
+    <h2
+      class="mt-1 text-xl sm:text-2xl font-bold tracking-tight"
+      style="color: var(--text-primary)"
+    >
+      Your finances at a glance
+    </h2>
+  </div>
 
-                    <!-- Income -->
-                    <div
-                      class="rounded-2xl border p-4 sm:p-5"
-                      style="
-                        background: var(--income-bg);
-                        border-color: var(--border-subtle);
-                      "
-                    >
-                      <p class="text-xs" style="color: var(--text-muted)">
-                        Income
-                      </p>
+  <span
+    class="hidden sm:block text-xs"
+    style="color: var(--text-muted)"
+  >
+    September 2026
+  </span>
+</div>
 
-                      <p
-                        class="mt-2 text-xl sm:text-2xl font-bold"
-                        style="color: var(--income)"
-                      >
-                        +$5,840
-                      </p>
 
-                      <p class="mt-3 text-xs" style="color: var(--text-muted)">
-                        This month
-                      </p>
-                    </div>
+<!-- =========================
+     Financial snapshot
+========================== -->
+<div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr_1fr] gap-3">
 
-                    <!-- Expenses -->
-                    <div
-                      class="rounded-2xl border p-4 sm:p-5"
-                      style="
-                        background: var(--expense-bg);
-                        border-color: var(--border-subtle);
-                      "
-                    >
-                      <p class="text-xs" style="color: var(--text-muted)">
-                        Expenses
-                      </p>
+  <!-- Balance — HERO -->
+  <div
+    class="relative overflow-hidden rounded-2xl border p-5 sm:p-6"
+    style="
+      background: var(--bg-surface);
+      border-color: var(--border-subtle);
+    "
+  >
+    <!-- subtle accent glow -->
+    <div
+      class="absolute -right-16 -top-16 w-40 h-40 rounded-full blur-3xl opacity-10"
+      style="background: var(--accent)"
+    />
 
-                      <p
-                        class="mt-2 text-xl sm:text-2xl font-bold"
-                        style="color: var(--text-primary)"
-                      >
-                        -$2,316
-                      </p>
+    <div class="relative">
+      <div class="flex items-center justify-between">
+        <p
+          class="text-xs font-medium"
+          style="color: var(--text-muted)"
+        >
+          Current balance
+        </p>
 
-                      <p class="mt-3 text-xs" style="color: var(--text-muted)">
-                        This month
-                      </p>
-                    </div>
-                  </div>
+        <div
+          class="w-8 h-8 rounded-lg flex items-center justify-center"
+          style="
+            background: var(--accent-glow);
+            color: var(--accent-bright);
+          "
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v18m9-9H3"
+            />
+          </svg>
+        </div>
+      </div>
 
-                  <!-- Charts -->
-                  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
-                    <!-- Flow chart -->
-                    <div
-                      class="lg:col-span-2 rounded-2xl border p-4 sm:p-5"
-                      style="
-                        background: var(--bg-surface);
-                        border-color: var(--border-subtle);
-                      "
-                    >
-                      <div class="flex items-center justify-between">
-                        <div>
-                          <p
-                            class="text-sm font-semibold"
-                            style="color: var(--text-primary)"
-                          >
-                            Financial flow
-                          </p>
+      <div class="mt-5 flex items-end gap-3">
+        <p
+          class="text-3xl sm:text-4xl font-bold tracking-tight"
+          style="color: var(--text-primary)"
+        >
+          $8,420.50
+        </p>
 
-                          <p
-                            class="text-xs mt-1"
-                            style="color: var(--text-muted)"
-                          >
-                            Income vs expenses
-                          </p>
-                        </div>
+        <span
+          class="mb-1.5 inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-semibold"
+          style="
+            color: var(--income);
+            background: var(--income-bg);
+          "
+        >
+          ↗ 12.4%
+        </span>
+      </div>
 
-                        <span
-                          class="text-xs px-2.5 py-1 rounded-lg"
-                          style="
-                            background: var(--chart-blue-bg);
-                            color: var(--accent-bright);
-                          "
-                        >
-                          Last 6 months
-                        </span>
-                      </div>
+      <p
+        class="mt-2 text-xs"
+        style="color: var(--text-muted)"
+      >
+        Compared with last month
+      </p>
+    </div>
+  </div>
 
-                      <!-- Chart -->
-                      <div
-                        class="mt-6 h-40 sm:h-48 flex items-end gap-2 sm:gap-4"
-                      >
-                        <div
-                          v-for="(bar, index) in [
-                            { income: 45, expense: 28 },
-                            { income: 58, expense: 35 },
-                            { income: 52, expense: 31 },
-                            { income: 72, expense: 42 },
-                            { income: 65, expense: 38 },
-                            { income: 88, expense: 46 },
-                          ]"
-                          :key="index"
-                          class="flex-1 flex items-end justify-center gap-1 h-full"
-                        >
-                          <div
-                            class="w-2 sm:w-4 rounded-t-md"
-                            :style="{
-                              height: `${bar.income}%`,
-                              background: 'var(--chart-blue)',
-                              opacity: 0.9,
-                            }"
-                          />
 
-                          <div
-                            class="w-2 sm:w-4 rounded-t-md"
-                            :style="{
-                              height: `${bar.expense}%`,
-                              background: 'var(--chart-bar-inactive)',
-                            }"
-                          />
-                        </div>
-                      </div>
-                    </div>
+  <!-- Income -->
+  <div
+    class="rounded-2xl border p-5"
+    style="
+      background: var(--bg-surface);
+      border-color: var(--border-subtle);
+    "
+  >
+    <div class="flex items-center justify-between">
+      <p
+        class="text-xs font-medium"
+        style="color: var(--text-muted)"
+      >
+        Income
+      </p>
 
-                    <!-- Categories -->
-                    <div
-                      class="rounded-2xl border p-4 sm:p-5"
-                      style="
-                        background: var(--bg-surface);
-                        border-color: var(--border-subtle);
-                      "
-                    >
-                      <p
-                        class="text-sm font-semibold"
-                        style="color: var(--text-primary)"
-                      >
-                        Spending
-                      </p>
+      <span
+        class="w-8 h-8 rounded-lg flex items-center justify-center"
+        style="
+          background: var(--income-bg);
+          color: var(--income);
+        "
+      >
+        ↗
+      </span>
+    </div>
 
-                      <p class="text-xs mt-1" style="color: var(--text-muted)">
-                        By category
-                      </p>
+    <p
+      class="mt-5 text-2xl font-bold"
+      style="color: var(--income)"
+    >
+      +$5,840
+    </p>
 
-                      <div class="mt-5 space-y-4">
-                        <div
-                          v-for="category in [
-                            { name: 'Housing', value: '38%' },
-                            { name: 'Food', value: '24%' },
-                            { name: 'Transport', value: '16%' },
-                            { name: 'Shopping', value: '12%' },
-                          ]"
-                          :key="category.name"
-                        >
-                          <div class="flex justify-between text-xs mb-1.5">
-                            <span style="color: var(--text-secondary)">
-                              {{ category.name }}
-                            </span>
+    <p
+      class="mt-2 text-xs"
+      style="color: var(--text-muted)"
+    >
+      This month
+    </p>
+  </div>
 
-                            <span style="color: var(--text-primary)">
-                              {{ category.value }}
-                            </span>
-                          </div>
 
-                          <div
-                            class="h-1.5 rounded-full overflow-hidden"
-                            style="background: var(--chart-bar-inactive)"
-                          >
-                            <div
-                              class="h-full rounded-full"
-                              :style="{
-                                width: category.value,
-                                background: 'var(--chart-blue)',
-                              }"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+  <!-- Expenses -->
+  <div
+    class="rounded-2xl border p-5"
+    style="
+      background: var(--bg-surface);
+      border-color: var(--border-subtle);
+    "
+  >
+    <div class="flex items-center justify-between">
+      <p
+        class="text-xs font-medium"
+        style="color: var(--text-muted)"
+      >
+        Expenses
+      </p>
 
-                  <!-- Transactions -->
-                  <div
-                    class="mt-4 rounded-2xl border p-4 sm:p-5"
-                    style="
-                      background: var(--bg-surface);
-                      border-color: var(--border-subtle);
-                    "
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <p
-                        class="text-sm font-semibold"
-                        style="color: var(--text-primary)"
-                      >
-                        Recent transactions
-                      </p>
+      <span
+        class="w-8 h-8 rounded-lg flex items-center justify-center"
+        style="
+          background: var(--expense-bg);
+          color: var(--expense);
+        "
+      >
+        ↘
+      </span>
+    </div>
 
-                      <span class="text-xs" style="color: var(--accent)">
-                        View all →
-                      </span>
-                    </div>
+    <p
+      class="mt-5 text-2xl font-bold"
+      style="color: var(--text-primary)"
+    >
+      -$2,316
+    </p>
 
-                    <div class="space-y-3">
-                      <div
-                        v-for="transaction in [
-                          {
-                            name: 'Salary',
-                            category: 'Income',
-                            amount: '+$4,200',
-                            type: 'income',
-                          },
-                          {
-                            name: 'Rent',
-                            category: 'Housing',
-                            amount: '-$1,450',
-                            type: 'expense',
-                          },
-                          {
-                            name: 'Grocery Store',
-                            category: 'Food',
-                            amount: '-$124.50',
-                            type: 'expense',
-                          },
-                        ]"
-                        :key="transaction.name"
-                        class="flex items-center justify-between"
-                      >
-                        <div class="flex items-center gap-3">
-                          <div
-                            class="h-9 w-9 rounded-xl flex items-center justify-center text-xs"
-                            style="background: var(--bg-surface-hover)"
-                          >
-                            <span
-                              :style="{
-                                color:
-                                  transaction.type === 'income'
-                                    ? 'var(--income)'
-                                    : 'var(--text-secondary)',
-                              }"
-                            >
-                              {{ transaction.type === "income" ? "↗" : "↘" }}
-                            </span>
-                          </div>
+    <p
+      class="mt-2 text-xs"
+      style="color: var(--text-muted)"
+    >
+      This month
+    </p>
+  </div>
+</div>
 
-                          <div>
-                            <p
-                              class="text-xs sm:text-sm font-medium"
-                              style="color: var(--text-primary)"
-                            >
-                              {{ transaction.name }}
-                            </p>
 
-                            <p
-                              class="text-[10px] sm:text-xs mt-0.5"
-                              style="color: var(--text-muted)"
-                            >
-                              {{ transaction.category }}
-                            </p>
-                          </div>
-                        </div>
+<!-- =========================
+     Main analytics
+========================== -->
+<div class="grid grid-cols-1 lg:grid-cols-[1.65fr_1fr] gap-4 mt-4">
 
-                        <span
-                          class="text-xs sm:text-sm font-semibold"
-                          :style="{
-                            color:
-                              transaction.type === 'income'
-                                ? 'var(--income)'
-                                : 'var(--text-primary)',
-                          }"
-                        >
-                          {{ transaction.amount }}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  <!-- Financial flow -->
+  <div
+    class="rounded-2xl border p-5 sm:p-6"
+    style="
+      background: var(--bg-surface);
+      border-color: var(--border-subtle);
+    "
+  >
+    <div class="flex items-start justify-between">
+      <div>
+        <p
+          class="text-sm font-semibold"
+          style="color: var(--text-primary)"
+        >
+          Financial flow
+        </p>
+
+        <p
+          class="mt-1 text-xs"
+          style="color: var(--text-muted)"
+        >
+          Income and spending over time
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="px-2.5 py-1.5 rounded-lg text-[11px] font-medium"
+        style="
+          color: var(--text-secondary);
+          background: var(--bg-surface-hover);
+          border: 1px solid var(--border-subtle);
+        "
+      >
+        6 months
+      </button>
+    </div>
+
+    <!-- Legend -->
+    <div class="flex items-center gap-4 mt-5">
+      <div class="flex items-center gap-1.5">
+        <span
+          class="w-2 h-2 rounded-full"
+          style="background: var(--accent)"
+        />
+        <span
+          class="text-[11px]"
+          style="color: var(--text-muted)"
+        >
+          Income
+        </span>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <span
+          class="w-2 h-2 rounded-full"
+          style="background: var(--chart-bar-inactive)"
+        />
+        <span
+          class="text-[11px]"
+          style="color: var(--text-muted)"
+        >
+          Expenses
+        </span>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="mt-5 h-48 sm:h-56 flex items-end gap-3 sm:gap-6">
+      <div
+        v-for="(bar, index) in [
+          { month: 'Apr', income: 45, expense: 28 },
+          { month: 'May', income: 58, expense: 35 },
+          { month: 'Jun', income: 52, expense: 31 },
+          { month: 'Jul', income: 72, expense: 42 },
+          { month: 'Aug', income: 65, expense: 38 },
+          { month: 'Sep', income: 88, expense: 46 },
+        ]"
+        :key="index"
+        class="flex-1 h-full flex flex-col justify-end"
+      >
+        <div class="flex items-end justify-center gap-1.5 h-[calc(100%-20px)]">
+          <div
+            class="w-3 sm:w-5 rounded-t-md transition-all duration-300 hover:opacity-80"
+            :style="{
+              height: `${bar.income}%`,
+              background: 'var(--accent)',
+            }"
+          />
+
+          <div
+            class="w-3 sm:w-5 rounded-t-md transition-all duration-300 hover:opacity-80"
+            :style="{
+              height: `${bar.expense}%`,
+              background: 'var(--chart-bar-inactive)',
+            }"
+          />
+        </div>
+
+        <span
+          class="mt-2 text-[10px] text-center"
+          style="color: var(--text-muted)"
+        >
+          {{ bar.month }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Spending -->
+  <div
+    class="rounded-2xl border p-5 sm:p-6"
+    style="
+      background: var(--bg-surface);
+      border-color: var(--border-subtle);
+    "
+  >
+    <div class="flex items-start justify-between">
+      <div>
+        <p
+          class="text-sm font-semibold"
+          style="color: var(--text-primary)"
+        >
+          Spending
+        </p>
+
+        <p
+          class="mt-1 text-xs"
+          style="color: var(--text-muted)"
+        >
+          Where your money goes
+        </p>
+      </div>
+
+      <span
+        class="text-xs font-semibold"
+        style="color: var(--text-primary)"
+      >
+        $2,316
+      </span>
+    </div>
+
+    <div class="mt-6 space-y-5">
+      <div
+        v-for="category in [
+          { name: 'Housing', value: 38, amount: '$880' },
+          { name: 'Food', value: 24, amount: '$556' },
+          { name: 'Transport', value: 16, amount: '$371' },
+          { name: 'Shopping', value: 12, amount: '$278' },
+        ]"
+        :key="category.name"
+      >
+        <div class="flex items-center justify-between mb-2">
+          <span
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+          >
+            {{ category.name }}
+          </span>
+
+          <div class="flex items-center gap-2">
+            <span
+              class="text-[11px]"
+              style="color: var(--text-muted)"
+            >
+              {{ category.amount }}
+            </span>
+
+            <span
+              class="text-xs font-semibold"
+              style="color: var(--text-primary)"
+            >
+              {{ category.value }}%
+            </span>
+          </div>
+        </div>
+
+        <div
+          class="h-1.5 rounded-full overflow-hidden"
+          style="background: var(--chart-bar-inactive)"
+        >
+          <div
+            class="h-full rounded-full"
+            :style="{
+              width: `${category.value}%`,
+              background: 'var(--accent)',
+            }"
+          />
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="mt-6 w-full py-2.5 rounded-xl text-xs font-semibold transition-all"
+      style="
+        color: var(--accent);
+        background: var(--accent-glow);
+      "
+    >
+      View spending breakdown
+    </button>
+  </div>
+</div>
+
+
+<!-- =========================
+     Recent activity
+========================== -->
+<div
+  class="mt-4 rounded-2xl border overflow-hidden"
+  style="
+    background: var(--bg-surface);
+    border-color: var(--border-subtle);
+  "
+>
+  <div class="px-5 py-4 flex items-center justify-between">
+    <div>
+      <p
+        class="text-sm font-semibold"
+        style="color: var(--text-primary)"
+      >
+        Recent activity
+      </p>
+
+      <p
+        class="mt-1 text-xs"
+        style="color: var(--text-muted)"
+      >
+        Your latest transactions
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="text-xs font-semibold transition-colors"
+      style="color: var(--accent)"
+    >
+      View all →
+    </button>
+  </div>
+
+  <div
+    class="border-t"
+    style="border-color: var(--border-subtle)"
+  >
+    <div
+      v-for="transaction in [
+        {
+          name: 'Salary',
+          category: 'Income',
+          amount: '+$4,200',
+          type: 'income',
+        },
+        {
+          name: 'Rent',
+          category: 'Housing',
+          amount: '-$1,450',
+          type: 'expense',
+        },
+        {
+          name: 'Grocery Store',
+          category: 'Food',
+          amount: '-$124.50',
+          type: 'expense',
+        },
+      ]"
+      :key="transaction.name"
+      class="group flex items-center justify-between px-5 py-3.5 transition-colors"
+      style="border-bottom: 1px solid var(--border-subtle)"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="w-9 h-9 rounded-xl flex items-center justify-center text-sm transition-transform duration-200 group-hover:scale-105"
+          style="background: var(--bg-surface-hover)"
+        >
+          <span
+            :style="{
+              color:
+                transaction.type === 'income'
+                  ? 'var(--income)'
+                  : 'var(--text-secondary)',
+            }"
+          >
+            {{ transaction.type === "income" ? "↗" : "↘" }}
+          </span>
+        </div>
+
+        <div>
+          <p
+            class="text-xs sm:text-sm font-semibold"
+            style="color: var(--text-primary)"
+          >
+            {{ transaction.name }}
+          </p>
+
+          <p
+            class="mt-0.5 text-[10px] sm:text-xs"
+            style="color: var(--text-muted)"
+          >
+            {{ transaction.category }}
+          </p>
+        </div>
+      </div>
+
+      <span
+        class="text-xs sm:text-sm font-semibold"
+        :style="{
+          color:
+            transaction.type === 'income'
+              ? 'var(--income)'
+              : 'var(--text-primary)',
+        }"
+      >
+        {{ transaction.amount }}
+      </span>
+    </div>
+  </div>
+</div>
+
+</div>
               </div>
             </div>
           </div>
@@ -965,12 +1199,29 @@ const goToDashboard = () => {
       <div
         class="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-      <div
-          class="flex h-10 w-10 items-center justify-center rounded-xl text-lg text-white shadow-lg font-bold  animate-pulse-glow"
-          style="background: linear-gradient(135deg, var(--accent), #3b82f6); box-shadow: 0 8px 32px var(--accent-glow);"
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl text-lg text-white shadow-lg font-bold animate-pulse-glow"
+          style="
+            background: linear-gradient(
+              135deg,
+              var(--accent),
+              var(--accent-bright)
+            );
+            box-shadow: 0 4px 16px var(--accent-glow);
+          "
         >
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+            />
           </svg>
         </div>
 

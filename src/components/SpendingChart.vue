@@ -61,7 +61,7 @@ const ranges: TimeRange[] = ["Daily", "Weekly", "Monthly"];
             left: `calc(4px + ${ranges.indexOf(
               timeRange
             )} * ((100% - 8px) / 3))`,
-            background: 'linear-gradient(135deg, #38bdf8, #6366f1)',
+            background: 'linear-gradient(135deg, #34d399, #6ee7b7)',
             boxShadow: '0 2px 10px rgba(56,189,248,0.3)',
           }"
         />

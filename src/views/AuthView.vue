@@ -49,8 +49,8 @@ const handleSubmit = async () => {
         <div
           class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center text-2xl font-bold text-white animate-pulse-glow cursor-pointer"
           style="
-            background: linear-gradient(135deg, var(--accent), #3b82f6);
-            box-shadow: 0 8px 32px var(--accent-glow);
+            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+            box-shadow: 0 4px 16px var(--accent-glow);
           "
           @click="router.push('/')"
         >
@@ -93,8 +93,8 @@ const handleSubmit = async () => {
             :style="{
               width: 'calc(50% - 4px)',
               left: isRegister ? 'calc(50% + 2px)' : '4px',
-              background: 'linear-gradient(135deg, var(--accent), #3b82f6)',
-              boxShadow: '0 4px 16px var(--accent-glow)',
+              background: 'linear-gradient(135deg, var(--accent), var(--accent-bright))',
+              boxShadow: 'box-shadow: 0 4px 16px var(--accent-glow)',
             }"
           />
           <button

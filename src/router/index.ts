@@ -1,40 +1,40 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { useAuthStore } from '../stores/auth';
+import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "../stores/auth";
 
 const routes = [
   {
-    path: '/',
-    name: 'Landing',
-    component: () => import('../views/Landing.vue'),
+    path: "/",
+    name: "Landing",
+    component: () => import("../views/Landing.vue"),
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/AuthView.vue'),
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/AuthView.vue"),
     meta: { guest: true },
   },
   {
-    path: '/register',
-    name: 'Register',
-    component: () => import('../views/AuthView.vue'),
+    path: "/register",
+    name: "Register",
+    component: () => import("../views/AuthView.vue"),
     meta: { guest: true },
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import('../views/DashboardView.vue'),
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("../views/DashboardView.vue"),
     meta: { requiresAuth: true },
   },
   {
-    path: '/transactions',
-    name: 'Transactions',
-    component: () => import('../views/TransactionsView.vue'),
+    path: "/transactions",
+    name: "Transactions",
+    component: () => import("../views/TransactionsView.vue"),
     meta: { requiresAuth: true },
   },
   {
-    path: '/categories',
-    name: 'Categories',
-    component: () => import('../views/CategoriesView.vue'),
+    path: "/categories",
+    name: "Categories",
+    component: () => import("../views/CategoriesView.vue"),
     meta: { requiresAuth: true },
   },
 ];
@@ -44,15 +44,20 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
   const auth = useAuthStore();
 
+  // Wait until we know the auth state
+  if (!auth.initialized) {
+    await auth.init();
+  }
+
   if (to.meta.requiresAuth && !auth.isAuthenticated) {
-    return { name: 'Login' };
+    return { name: "Login" };
   }
 
   if (to.meta.guest && auth.isAuthenticated) {
-    return { name: 'Dashboard' };
+    return { name: "Dashboard" };
   }
 });
 
